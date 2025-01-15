@@ -52,6 +52,22 @@ a - Lowercase Ante meridiem and Post meridiem (am or pm)
                 echo "date " . date("i s", $d) . "<br>";
                 $d = strtotime("+10 seconds", $d);
             }
+
+
+
+            // // setcookie(name, value, expire, path, domain, secure, httponly);
+            $cookie_name = "userInfo";
+            $cookie_value = "Abhi Patel";
+            // 86400 = 1 Day = 86400 sec
+            
+            setcookie($cookie_name, $cookie_value, time() + (86400), "/");     
+            if (!isset($_COOKIE[$cookie_name])) {
+                echo "Cookie name " .$cookie_name ." is not set!";
+            }else {
+                echo "Cookie '" . $cookie_name . "' is set!<br>"; 
+                echo "Value is: " . $_COOKIE[$cookie_name];     
+                  
+            }
         ?>
     </body>
 </html>
