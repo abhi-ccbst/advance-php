@@ -60,7 +60,7 @@ a - Lowercase Ante meridiem and Post meridiem (am or pm)
             $cookie_value = "Abhi Patel";
             // 86400 = 1 Day = 86400 sec
             
-            setcookie($cookie_name, $cookie_value, time() + (86400), "/");     
+            setcookie($cookie_name, $cookie_value, time() + (8), "/");     
             if (!isset($_COOKIE[$cookie_name])) {
                 echo "Cookie name " .$cookie_name ." is not set!";
             }else {
