@@ -55,7 +55,7 @@ a - Lowercase Ante meridiem and Post meridiem (am or pm)
 
 
 
-            // // setcookie(name, value, expire, path, domain, secure, httponly);
+            // // setcookie(name, value, expire,  );
             $cookie_name = "userInfo";
             $cookie_value = "Abhi Patel";
             // 86400 = 1 Day = 86400 sec
