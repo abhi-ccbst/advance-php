@@ -1,10 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-if (!isset($conn)) {
-    include 'db.php';
-}
 
+session_start();
+include 'db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check if XML input is provided
@@ -19,12 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $name = (string)$xml->name;
         $email = (string)$xml->email;
         $theme = (string)$xml->preferences->theme;
-        // Check if theme cookie exists and delete it
-        if (isset($_COOKIE['theme'])) {
-            setcookie("theme", "", time() - 3600, "/"); // Delete the existing cookie by setting its expiration in the past
-        }
 
-        // Set the new theme cookie
+        // Save data to session
+        $_SESSION['name'] = $name;
+        $_SESSION['email'] = $email;
+
+        // Save theme to cookies
         setcookie("theme", $theme, time() + (86400 * 7), "/"); // 7-day cookie
 
         // Insert data into the database
@@ -33,21 +30,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
 
         $success = "XML processed successfully!";
-        // Redirect to refresh the page after processing the form
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit();
     }
 }
 
 // Retrieve user data from the database
-
+$result = $conn->query("SELECT * FROM users");
 
 // Close database connection
-if (isset($conn)) {
-    $result = $conn->query("SELECT * FROM users");
-    $conn->close();    
-}
-
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -57,8 +47,8 @@ if (isset($conn)) {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: <?php echo (isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'dark') ? '#333' : '#fff'; ?>;
-            color: <?php echo (isset($_COOKIE['theme']) && $_COOKIE['theme'] === 'dark') ? '#fff' : '#000'; ?>;
+            background-color: <?php echo ($_COOKIE['theme'] ?? 'light') === 'dark' ? '#333' : '#fff'; ?>;
+            color: <?php echo ($_COOKIE['theme'] ?? 'light') === 'dark' ? '#fff' : '#000'; ?>;
         }
         table {
             width: 50%;
@@ -94,6 +84,13 @@ if (isset($conn)) {
 
     <?php if (isset($success)): ?>
         <p class="message" style="color: green;"><?php echo $success; ?></p>
+    <?php endif; ?>
+
+    <!-- Display Session Data -->
+    <?php if (isset($_SESSION['name'])): ?>
+        <h2 style="text-align: center;">Session Data</h2>
+        <p style="text-align: center;">Name: <?php echo $_SESSION['name']; ?></p>
+        <p style="text-align: center;">Email: <?php echo $_SESSION['email']; ?></p>
     <?php endif; ?>
 
     <!-- Display Users from Database -->
