@@ -35,6 +35,11 @@ session_start();
             echo "Failed to load XML <br>";
         } else{
             print_r($convert_xml);    
+            echo "<br>" . $convert_xml->customer[0]->name . "<br>";
+            echo "<br>" . $convert_xml->customer[1]->city . "<br>";
+            foreach ($convert_xml->children() as $customers) {
+                echo $customers->id . ", " . $customers->name . ", " . $customers->city . ", " . $customers->Country . "<br>";
+            }
         }
         ?>
 
