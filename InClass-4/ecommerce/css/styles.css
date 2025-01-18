@@ -1,0 +1,28 @@
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.cart-item img {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.cart-item h3, .cart-item p {
+    margin: 0;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #218838;
+}
