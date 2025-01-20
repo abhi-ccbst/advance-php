@@ -1,4 +1,6 @@
 DROP DATABASE IF EXISTS ccbst;
+
+CREATE DATABASE ccbst;
 USE ccbst;
 
 CREATE TABLE users (
