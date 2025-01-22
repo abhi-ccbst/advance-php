@@ -19,7 +19,7 @@ while ($row = $result->fetch_assoc()) {
         <td>{$row['price']}</td>
         <td>
             <a href='edit_product.php?id={$row['id']}'>Edit</a> | 
-            <a href='delete_product.php?id={$row['id']}' onclick='return confirm(\"Are you sure?\")'>Delete</a>
+            <a href='delete_product.php?id={$row['id']}'>Delete</a>
         </td>
     </tr>";
 }
@@ -28,3 +28,4 @@ echo "</table>";
 
 include '../includes/footer.php';
 ?>
+
