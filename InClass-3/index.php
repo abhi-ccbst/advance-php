@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $success = "XML processed successfully!";
     }
+    unset($_POST);
 }
 
 // Retrieve user data from the database
