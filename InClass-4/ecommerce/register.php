@@ -1,14 +1,17 @@
 <?php
 include 'includes/db.php';
+include 'includes/header.php';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $password = $_POST['password'];
 
     $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $name, $email, $password);
     if ($stmt->execute()) {
-        echo "Registration successful. <a href='login.php'>Login here</a>";
+        // echo "User created successful. <a href='login.php'>Login here</a>";
+        header('Location: login.php'); // Redirect to login page
     } else {
         echo "Error: " . $stmt->error;
     }
