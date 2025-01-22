@@ -9,12 +9,22 @@
 </head>
 <body>
     <nav>
-        <a href="index.php">Home</a>
-        <a href="products.php">Products</a>
-        <a href="cart.php">Cart</a>
-        <?php if (isset($_COOKIE['user_id'])): ?>
-            <a href="logout.php">Logout</a>
-        <?php else: ?>
-            <a href="login.php">Login</a>
-        <?php endif; ?>
+    <div class="nav-left">
+            <a href="index.php">Home</a>
+            <a href="products.php">Products</a>
+            <a href="cart.php">Cart</a>
+        </div>
+
+        <div class="nav-right">
+            <?php if (isset($_COOKIE['user_name'])): ?>
+                <span class="username">
+                    Hello, <?php echo htmlspecialchars($_COOKIE['user_name']); ?>!
+                </span>
+                <a href="logout.php">Logout</a>
+            <?php else: ?>
+                <a href="login.php">Login</a>
+            <?php endif; ?>
+        </div>
+
+
     </nav>

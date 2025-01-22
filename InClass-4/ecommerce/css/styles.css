@@ -26,3 +26,26 @@
 .button:hover {
     background-color: #218838;
 }
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f4f4f4;
+    padding: 10px 20px;
+}
+nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+}
+.nav-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+.username {
+    margin-right: 10px;
+    font-weight: bold;
+    color: #555;
+}
