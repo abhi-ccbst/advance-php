@@ -15,9 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($stmt->num_rows > 0) {
         $stmt->bind_result($user_id, $db_password, $user_name);
         $stmt->fetch();
-
+        
         // Directly compare the entered password with the stored password (not recommended)
-        if ($password === $db_password) {
+        // if ($password === $db_password) {
+        if(password_verify($password, $db_password)) {
             // Set the user_id cookie for 7 days
             setcookie('user_id', $user_id, time() + (86400 * 7), '/');
             setcookie('user_name', $user_name, time() + (86400 * 7), '/');

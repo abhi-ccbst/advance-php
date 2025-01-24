@@ -6,9 +6,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-
+    $hash_password = password_hash($password, PASSWORD_DEFAULT);
     $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $name, $email, $password);
+    $stmt->bind_param("sss", $name, $email, $hash_password);
     if ($stmt->execute()) {
         // echo "User created successful. <a href='login.php'>Login here</a>";
         header('Location: login.php'); // Redirect to login page
