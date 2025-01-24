@@ -11,7 +11,7 @@ $order_id = intval($_GET['order_id']);
 $user_id = $_COOKIE['user_id'];
 
 // Fetch order details
-$stmt = $conn->prepare("SELECT total_price, order_date FROM orders WHERE id = ? AND user_id = ?");
+$stmt = $conn->prepare("SELECT total as total_price, created_at as order_date FROM orders WHERE id = ? AND user_id = ?");
 $stmt->bind_param("ii", $order_id, $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
