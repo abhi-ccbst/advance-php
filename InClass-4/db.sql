@@ -38,6 +38,15 @@ CREATE TABLE orders (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+CREATE TABLE order_items (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    FOREIGN KEY (product_id) REFERENCES products(id),
+    FOREIGN KEY (order_id) REFERENCES orders(id)
+    
+);
 
 INSERT INTO ccbst.products (name, price, description, image) VALUES
 ('Product A', 10.00, 'Description for Product A.', 'uploads/a.jpeg'),
@@ -46,5 +55,5 @@ INSERT INTO ccbst.products (name, price, description, image) VALUES
 ('Product D', 25.00, 'Description for Product D.', 'uploads/d.jpeg'),
 ('Product E', 30.00, 'Description for Product E.', 'uploads/e.jpeg');
 
-INSERT INTO ccbst.users (name, email, password) VALUES
-('admin', 'admin@admin.com', 'admin');
+-- INSERT INTO ccbst.users (name, email, password) VALUES
+-- ('admin', 'admin@admin.com', 'admin');
