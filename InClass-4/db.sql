@@ -8,6 +8,7 @@ CREATE TABLE users (
     name VARCHAR(100),
     email VARCHAR(100) UNIQUE,
     password VARCHAR(255),
+    gender ENUM('Male', 'Female', 'Other') NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
