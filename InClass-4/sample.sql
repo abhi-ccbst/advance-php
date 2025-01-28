@@ -14,13 +14,13 @@ CREATE TABLE Products(     -- One to many
     id INT AUTO_INCREMENT PRIMARY KEY, 
     price int NOT NULL,
     customer_id INT NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES Customers(id)
+    FOREIGN KEY (customer_id) REFERENCES Customers(id) ON DELETE cascade
 );
 
 CREATE TABLE Test(        -- One to One   
     id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT NOT NULL UNIQUE,
-    FOREIGN KEY (customer_id) REFERENCES Customers(id)
+    FOREIGN KEY (customer_id) REFERENCES Customers(id) ON DELETE cascade
 ); 
 
 CREATE TABLE Sales(
@@ -32,8 +32,8 @@ CREATE TABLE Product_Sales(
     product_id int NOT NULL,
     sale_id int NOT NULL,
     PRIMARY KEY (product_id, sale_id),
-    FOREIGN KEY (product_id) REFERENCES Products(id),
-    FOREIGN KEY (sale_id) REFERENCES Sales(id)
+    FOREIGN KEY (product_id) REFERENCES Products(id) ON DELETE cascade,
+    FOREIGN KEY (sale_id) REFERENCES Sales(id) ON DELETE cascade
 );
 
 
@@ -74,6 +74,21 @@ INSERT INTO Product_Sales (product_id, sale_id) VALUES
 (3, 3), 
 (4, 4), 
 (5, 5);
+
+
+
+DELETE FROM Customers WHERE id > 0;
+
+
+SELECT * from Customers;
+
+ALTER TABLE Customers ADD name varchar(100);
+UPDATE Customers SET name =  'DEFAULT' where id > 0;
+
+
+ALTER TABLE Customers Drop COLUMN name;
+ALTER TABLE Customers RENAME COLUMN name TO re_name;
+
 
 
 
