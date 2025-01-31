@@ -14,6 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $replaceResult = preg_replace($pattern, $replacement, $text);
     $splitResult = preg_split($pattern, $text);
 }
+// @gmail.com  
 ?>
 
 <!DOCTYPE html>
